@@ -1,0 +1,42 @@
+// Code to demonstrate thread scheduling
+class Demo extends Thread
+{
+    public void run()
+    {
+        int i = 0;
+        
+        for(i = 1; i <= 5; i++)
+        {
+            System.out.println("Inside run Method of :"+Thread.currentThread().getName());
+        }
+    }
+}
+class ThreadUserDefinedSleep
+{
+    public static void main(String A[])
+    {
+        System.out.println("Inside a main thread");
+
+        Demo dobj1 = new Demo();
+        Demo dobj2 = new Demo();
+
+        dobj1.setName("First");
+        dobj2.setName("Second");
+
+        // Checked exception
+        try
+        {
+        dobj1.start();
+        dobj2.start();
+
+        dobj1.join();
+        dobj2.join();
+
+        }
+        catch(InterruptedException iobj)
+        {
+            
+        }
+        System.out.println("End of main thread");
+    }
+}
